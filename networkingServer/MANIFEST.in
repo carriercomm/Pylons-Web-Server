@@ -1,0 +1,3 @@
+include networkingserver/config/deployment.ini_tmpl
+recursive-include networkingserver/public *
+recursive-include networkingserver/templates *

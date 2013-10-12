@@ -1,0 +1,99 @@
+.half{	
+	height: 50%;
+}
+
+.half.blue{	
+}
+body{
+	background: url('/img/stars.jpg');
+}
+
+.pageContent{
+	padding-top: 100px;
+}
+
+#mainButton{
+	display: block;
+	margin: auto;
+	width: 175px;
+	margin-top: 20px;
+}
+#rotatingDiv{
+	width: 88px;
+	height: 89px;
+	margin: auto;
+}
+
+#characterSelector{
+	text-align: center;
+	clear: both;
+	overflow: hidden;
+}
+
+h1,h2{
+	color: #fff;
+}
+
+.modal h2{
+	color: #333;
+}
+.mainContent{
+	text-align: center;
+	padding-bottom: 50px;
+}
+
+.character{
+	display: inline-block;
+	width: 100px;
+	text-align: center;
+}
+.character button{
+	width: 88px;
+	margin-bottom: 5px;
+}
+.character a{
+	text-align: center;
+}
+
+.character img{
+	margin: 4px;
+	width: 88px;
+	max-height: 89px;
+}
+.character a:hover img{
+	outline: 4px solid #fff;
+}
+
+#messageBar{
+	position: fixed;
+	top: 54px;
+	width: 100%;
+	line-height: 40px;
+	background: #08C;
+	color: #fff;
+}
+#messageBar .content{
+	padding-left: 10px;
+}
+
+#mainMenu{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 54px;
+	background: #fff;
+}
+
+#mainMenu ul{
+	margin: 10px;
+}
+
+.hidden{
+	display: none;
+}
+
+#footer{
+	background: white;
+	padding: 20px;
+	color: #08C;
+}
