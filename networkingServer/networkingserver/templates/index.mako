@@ -204,7 +204,7 @@
 			</form>
 		</div>
 		<div class="mainContent">
-			<h1>Networking Lab 3</h1>
+			<h1>Networking Lab 4</h1>
 			<h2>Daniel Robinson 0700662</h2>
 			<h1>Choose Your Character</h1>			
 			<div id="characterSelector">
@@ -230,30 +230,21 @@
 		</div>
 
 		<div id="footer">
-			<h3>Lab 3</h3>
-			<p>To test the REST functionality follow these steps:</p>
+			<h3>Lab 4</h3>
+			<p><b>Nosetests:</b></p>
 			<ul>
-				<li>Navigate to http://127.0.0.1:5000/</li>
+				<li>Navigate to the networkingServer/ directory.</li>
+				<li>Run:</li>
+				<ul><li>nosetests networkingserver/tests/functional/test_mainController.py</li></ul>
+				<li>The output should indicate 3 tests run and passed.</li>
 			</ul>
-			<h4>ADD</h4>
+			<p><b>Selenium:</b></p>
 			<ul>
-				<li>Click "Add new character" in the top left nav.</li>
-				<li>specify a name and link to an image.</li>
-				<li>Click "Save"</li>
-				<li>Your character should be added to the list, and the page will reload.</li>
-				<li>When the page reloads, a message should be displayed under the main nav, telling you the success or failure of your action.</li>
-			</ul>
-			<h4>EDIT</h4>
-			<ul>
-				<li>Click one of the "edit" buttons below the character you want to change.</li>
-				<li>Specify a new name or image</li>
-				<li>Click "Save"</li>
-				<li>Your character should be successfully changed.</li>
-			</ul>
-			<h4>DELETE</h4>
-			<ul>
-				<li>Click the "delete" button below the character you want to remove.</li>
-				<li>The page should reload and your character should be gone.</li>
+				<li>Start up the server:</li>
+				<ul><li>paster serve --reload development.ini</li></ul>
+				<li>Open Selenium IDE in Firefox</li>
+				<li>Load the test suite named "Selenium.txt" in the root directory.</li>
+				<li>Run the test suite.</li>
 			</ul>
 		</div>
 	</div>
