@@ -22,16 +22,23 @@ def make_map(config):
     map.connect('mapping0','/',
 		controller='mainController', action='index')
 
-    map.connect('mapping1','/{action}',
-		controller='mainController', action='{action}')
     map.connect('mapping2','/message/:msg',
 		controller='mainController', action='message',
 		msg='')
+    map.connect('mapping6','/login',
+		controller='mainController', action='login')
+
+    map.connect('mapping5','/users',
+		controller='mainController', action='userList')
 
     map.connect('mapping3','/users/:userid',
 		controller='mainController', action='users',
 		userid='[nobody]')
-    map.connect('mapping3','/play/:userid',
+
+    map.connect('mapping7','/dashboard/:username',
+		controller='mainController', action='dashboard',
+		username='[nobody]')
+    map.connect('mapping4','/play/:userid',
 		controller='mainController', action='play',
 		userid='[nobody]')
 

@@ -5,11 +5,11 @@
 .half.blue{	
 }
 body{
-	background: url('/img/stars.jpg');
+	background: url('/img/triangular.png');
 }
 
 .pageContent{
-	padding-top: 100px;
+	padding-top: 50px;
 }
 
 #mainButton{
@@ -24,14 +24,17 @@ body{
 	margin: auto;
 }
 
-#characterSelector{
+#userSelector{
 	text-align: center;
 	clear: both;
-	overflow: hidden;
+	
+	width: 500px;
+	background: white;
+	margin: auto;
 }
 
 h1,h2{
-	color: #fff;
+	color: #222;
 }
 
 .modal h2{
@@ -39,34 +42,34 @@ h1,h2{
 }
 .mainContent{
 	text-align: center;
-	padding-bottom: 50px;
+	padding: 50px 0;
 }
 
-.character{
-	display: inline-block;
-	width: 100px;
+.user{
+	/*display: inline-block;
+	width: 100px; */
 	text-align: center;
 }
-.character button{
+.user button{
 	width: 88px;
 	margin-bottom: 5px;
 }
-.character a{
+.user a{
 	text-align: center;
 }
 
-.character img{
+.user img{
 	margin: 4px;
 	width: 88px;
 	max-height: 89px;
 }
-.character a:hover img{
+.user a:hover img{
 	outline: 4px solid #fff;
 }
 
 #messageBar{
 	position: fixed;
-	top: 54px;
+	top: 50px;
 	width: 100%;
 	line-height: 40px;
 	background: #08C;
@@ -76,24 +79,35 @@ h1,h2{
 	padding-left: 10px;
 }
 
-#mainMenu{
-	position: fixed;
-	top: 0;
-	width: 100%;
-	height: 54px;
-	background: #fff;
-}
-
-#mainMenu ul{
-	margin: 10px;
-}
 
 .hidden{
 	display: none;
 }
 
-#footer{
-	background: white;
+footer{
+	background: #222;
+	border-color: #080808;
 	padding: 20px;
-	color: #08C;
+	color: #fff;
+}
+
+#signInForm{
+	width: 400px;
+	margin: auto;
+}
+
+#userList{
+	background: white;
+	width: 700px;
+	box-shadow: 5px 5px;
+	margin: auto;
+}
+
+#userList td,
+#userList th{
+	text-align: center;
+}
+
+#userList button{
+	float: right;
 }
