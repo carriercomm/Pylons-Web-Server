@@ -90,6 +90,9 @@
 					<li>
 						<a href="#registerModal" data-toggle="modal">Register</a>
 					</li>
+					<li>
+						<a onclick="logout();">Logout</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

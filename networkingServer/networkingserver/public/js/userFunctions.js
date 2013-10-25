@@ -24,6 +24,19 @@ function login(uname, passwd){
 	});
 	return false;
 }
+function logout(){
+	$.ajax({
+	    type: "POST",
+	    url: '/logout',
+	    success: function(data) {
+		window.location.reload();
+	    },
+	    error: function(data) {           // Stuff to run on error
+		   alert('ERROR');
+	    }
+	});
+	return false;
+}
 function register(uname, passwd){
 	$.ajax({
 	    type: "POST",
@@ -41,7 +54,7 @@ function register(uname, passwd){
 	    	error: function(data) {           // Stuff to run on error
 		    alert('ERROR');
 	       }
-	 })
+	 });
 }
 function editUser(uname){
 	$.ajax({
@@ -109,6 +122,10 @@ function updateUserList(){
 			showMessage("User Listing failed. " + data);
 		},
 		success: function(data){
+			if (data.length == 0){
+				showMessage("User Listing failed. Cannot connect to the database, please try again.");
+				return false
+			}
 			var userList = $.parseJSON(data);
 			var template = '';
 			for (var i = 0; i < userList.length; i++) {

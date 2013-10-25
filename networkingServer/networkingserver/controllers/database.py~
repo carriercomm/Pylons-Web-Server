@@ -3,8 +3,8 @@ import MySQLdb
 def connect():
 	try:
 		db = MySQLdb.connect(host="dursley.socs.uoguelph.ca",
-	            user="test", # replace with your username
-        	    passwd="test", # replace with your password (student id number, including leading 0)
+	            user="drobin03", # replace with your username
+        	    passwd="0700662", # replace with your password (student id number, including leading 0)
         	    db="cis3210") # course database
 		#db = MySQLdb.connect(host="localhost",
 		#	user="root",

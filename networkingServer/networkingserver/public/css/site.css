@@ -107,6 +107,7 @@ footer{
 #userList td,
 #userList th{
 	text-align: center;
+	vertical-align: middle;
 }
 
 #userList button{

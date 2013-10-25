@@ -27,6 +27,8 @@ def make_map(config):
 		msg='')
     map.connect('mapping6','/login',
 		controller='mainController', action='login')
+    map.connect('mapping6','/logout',
+		controller='mainController', action='logout')
 
     map.connect('mapping5','/users',
 		controller='mainController', action='userList')

@@ -122,7 +122,7 @@
 					</div>
 					<div class="modal-footer">
 						<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-						<input class="btn btn-default btn-primary" type="submit" name="submit" value="Submit" onclick="register($('#regUsername').val(), $('#regPassword').val());" />
+						<input class="btn btn-default btn-primary" type="button" name="submit" value="Submit" onclick="register($('#regUsername').val(), $('#regPassword').val());" />
 					</div>
 				</div>
 			</div>

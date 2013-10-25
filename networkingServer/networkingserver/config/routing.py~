@@ -35,9 +35,6 @@ def make_map(config):
 		controller='mainController', action='users',
 		userid='[nobody]')
 
-    map.connect('mapping5','/users/add',
-		controller='mainController', action='addUser')
-
     map.connect('mapping7','/dashboard/:username',
 		controller='mainController', action='dashboard',
 		username='[nobody]')

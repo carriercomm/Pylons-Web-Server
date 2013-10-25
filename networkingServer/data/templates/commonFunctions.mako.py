@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 6
-_modified_time = 1382052379.728423
+_modified_time = 1382465779.212981
 _template_filename=u'/home/dan/Desktop/Fall_2013/Networking/pylonsProjects/Pylons-Web-Server/networkingServer/networkingserver/templates/commonFunctions.mako'
 _template_uri=u'/commonFunctions.mako'
 _template_cache=cache.Cache(__name__, _modified_time)
@@ -20,9 +20,9 @@ def render_body(context,**pageargs):
         __M_writer = context.writer()
         # SOURCE LINE 78
         __M_writer(u'\n')
-        # SOURCE LINE 131
+        # SOURCE LINE 134
         __M_writer(u'\n\n')
-        # SOURCE LINE 152
+        # SOURCE LINE 155
         __M_writer(u'\n')
         return ''
     finally:
@@ -46,19 +46,19 @@ def render_nav(context):
         c = context.get('c', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 79
-        __M_writer(u'\n\t<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">\n\t\t<div class="container">\n\t\t\t<div class="navbar-header">\n\t\t\t\t<a class="navbar-brand" href="/">Networking</a>\n\t\t\t</div>\n\t\t\t<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">\n\t\t\t\t<ul id="mainMenu" class="nav navbar-nav navbar-inverse">\n\t\t\t\t\t<li class="active">\n\t\t\t\t\t\t<a href="/">Home</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href="#registerModal" data-toggle="modal">Register</a>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\t\t\t</nav>\n\t\t</div>\n')
-        # SOURCE LINE 96
+        __M_writer(u'\n\t<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">\n\t\t<div class="container">\n\t\t\t<div class="navbar-header">\n\t\t\t\t<a class="navbar-brand" href="/">Networking</a>\n\t\t\t</div>\n\t\t\t<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">\n\t\t\t\t<ul id="mainMenu" class="nav navbar-nav navbar-inverse">\n\t\t\t\t\t<li class="active">\n\t\t\t\t\t\t<a href="/">Home</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href="#registerModal" data-toggle="modal">Register</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a onclick="logout();">Logout</a>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\t\t\t</nav>\n\t\t</div>\n')
+        # SOURCE LINE 99
         if c.message:
-            # SOURCE LINE 97
+            # SOURCE LINE 100
             __M_writer(u'\t\t<div id="messageBar">\n')
-            # SOURCE LINE 98
+            # SOURCE LINE 101
         else:
-            # SOURCE LINE 99
+            # SOURCE LINE 102
             __M_writer(u'\t\t<div id="messageBar" style="display: none;">\n')
             pass
-        # SOURCE LINE 101
+        # SOURCE LINE 104
         __M_writer(u'\t\t\t<div class="content">\n\t\t\t\t')
-        # SOURCE LINE 102
+        # SOURCE LINE 105
         __M_writer(escape(c.message))
         __M_writer(u'\n\t\t\t</div>\n\t\t</div>\n\t</header>\n\t<div id="registerModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">\t\t\n\t\t<form role="form" id="registerForm" name="addUser" action="" method="POST">\n\t\t\t<div class="modal-dialog">\n\t\t\t\t<div class="modal-content">\n\t\t\t\t\t<div class="modal-header">\t\t\t\n\t\t\t\t\t\t<h2>Register</h2>\n\t\t\t\t\t</div>\t\n\t\t\t\t\t<div class="modal-body">\n\t\t\t\t\t\t<div class="form-group">\n\t\t\t\t\t\t\t<label>Username</label>\n\t\t\t\t\t\t\t<input id="regUsername" class="form-control" type="text" placeholder="Name" name="username" />\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="form-group">\n\t\t\t\t\t\t\t<label>Password</label>\n\t\t\t\t\t\t\t<input id="regPassword" class="form-control" type="password" placeholder="" name="password" />\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="modal-footer">\n\t\t\t\t\t\t<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>\n\t\t\t\t\t\t<input class="btn btn-default btn-primary" type="button" name="submit" value="Submit" onclick="register($(\'#regUsername\').val(), $(\'#regPassword\').val());" />\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</form>\n\t</div>\n')
         return ''
@@ -70,7 +70,7 @@ def render_footer(context):
     context.caller_stack._push_frame()
     try:
         __M_writer = context.writer()
-        # SOURCE LINE 133
+        # SOURCE LINE 136
         __M_writer(u'\n\t<footer id="footer">\n\t\t<h3>Lab 4</h3>\n\t\t<p><b>Nosetests:</b></p>\n\t\t<ul>\n\t\t\t<li>Navigate to the networkingServer/ directory.</li>\n\t\t\t<li>Run:</li>\n\t\t\t<ul><li>nosetests networkingserver/tests/functional/test_mainController.py</li></ul>\n\t\t\t<li>The output should indicate 3 tests run and passed.</li>\n\t\t</ul>\n\t\t<p><b>Selenium:</b></p>\n\t\t<ul>\n\t\t\t<li>Start up the server:</li>\n\t\t\t<ul><li>paster serve --reload development.ini</li></ul>\n\t\t\t<li>Open Selenium IDE in Firefox</li>\n\t\t\t<li>Load the test suite named "Selenium.txt" in the root directory.</li>\n\t\t\t<li>Run the test suite.</li>\n\t\t</ul>\n\t</footer>\n')
         return ''
     finally:
