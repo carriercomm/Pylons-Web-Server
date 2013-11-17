@@ -1,8 +1,26 @@
+function checkAuth(){
+	$.ajax({
+	    type: "GET",
+	    url: '/auth',
+	    success: function(data) {
+				console.log(data);
+				data = $.trim(data);
+				console.log("DATA " + data);
+				if (data){
+					window.location = "/dashboard/" + data;
+				}
+	    },
+	    error: function(data) {           // Stuff to run on error
+		  	alert('ERROR');
+	    }
+	});
+}
+
 function login(uname, passwd){
 	$.ajax({
 	    type: "POST",
 	    url: '/login',
-	    data: { 
+	    data: {
 		username: uname,
 		password: passwd
 	    },
@@ -11,12 +29,12 @@ function login(uname, passwd){
 		data = $.trim(data);
 		if (data == "Valid"){
 			showMessage("Welcome " + uname);
-			window.location = "/dashboard/" + uname;
+			window.location.reload();
 		} else if (data == "Invalid"){
 			showMessage("Invalid username or password, please try again.");
 		}
-				
-		/* window.location.reload(); */ 
+
+		/* window.location.reload(); */
 	    },
 	    error: function(data) {           // Stuff to run on error
 		   alert('ERROR');
@@ -26,10 +44,10 @@ function login(uname, passwd){
 }
 function logout(){
 	$.ajax({
-	    type: "POST",
+	    type: "GET",
 	    url: '/logout',
 	    success: function(data) {
-		window.location.reload();
+	    		window.location = "/";
 	    },
 	    error: function(data) {           // Stuff to run on error
 		   alert('ERROR');
@@ -67,14 +85,13 @@ function editUser(uname){
 			var jsonData = $.parseJSON(data);
 			var userid = jsonData.userid;
 			var image = jsonData.image;
-	
+
 			$('#editUserModal').find('.oldName').html(userid);
 			$('#editUserModal').find('input[name="userid"]').val(userid);
 			$('#editUserModal').find('input[name="image"]').val(image);
 			$('#editUserModal').modal();
 		}
 	});
-				
 }
 function updateUser(uname, image){
 	$.ajax({
@@ -110,7 +127,6 @@ function checkUser(){
 	// Get user selected
 	var user  = $('#userSelector').find('.active img').attr('data-name');
 	$('#userSelectorInput').val(user);
-			
 }
 
 function updateUserList(){
@@ -122,7 +138,7 @@ function updateUserList(){
 			showMessage("User Listing failed. " + data);
 		},
 		success: function(data){
-			if (data.length == 0){
+			if (data == null){
 				showMessage("User Listing failed. Cannot connect to the database, please try again.");
 				return false
 			}

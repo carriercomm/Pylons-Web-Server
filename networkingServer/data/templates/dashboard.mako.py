@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 6
-_modified_time = 1382036491.521777
+_modified_time = 1383246930.675209
 _template_filename='/home/dan/Desktop/Fall_2013/Networking/pylonsProjects/Pylons-Web-Server/networkingServer/networkingserver/templates/dashboard.mako'
 _template_uri='/dashboard.mako'
 _template_cache=cache.Cache(__name__, _modified_time)
@@ -37,14 +37,14 @@ def render_body(context,**pageargs):
         __M_writer(u'\n<html>\n')
         # SOURCE LINE 7
         __M_writer(escape(commonFunctions.head()))
-        __M_writer(u'\n\n<body>\n\t<div class="pageContent">\n\t\t')
-        # SOURCE LINE 11
+        __M_writer(u'\n<body>\n\t<div class="pageContent">\n\t\t')
+        # SOURCE LINE 10
         __M_writer(escape(commonFunctions.nav()))
-        __M_writer(u'\n\t\t<div class="mainContent">\n\t\t\t<h1>')
-        # SOURCE LINE 13
+        __M_writer(u'\n\t\t<div class="mainContent">\n      <div id="imageSlider">\n          <div class="loading"><img src="/img/ajax-loader.gif" alt="loading..."/></div>\n          <div class="carousel-inner">\n          </div>\n       </div>\n      <div class="raised">\n\t\t\t <h1>')
+        # SOURCE LINE 18
         __M_writer(escape(c.username))
-        __M_writer(u"'s Dashboard</h1>\n\t\t</div>\n\t\t")
-        # SOURCE LINE 15
+        __M_writer(u' Dashboard</h1>\n       <form role="form" id="searchForm" name="searchForm">\n        <div class="form-group">\n          <input type="text" class="form-control" id="searchTerm" placeholder="Enter a term to search" />\n        </div>\n        <div class="form-group">\n          <label for="numResults" class="control-label" style="color: white;">Number of results to display:</label>\n          <select id="numResults" class="form-control">\n            <option>1</option>\n            <option>2</option>\n            <option>5</option>\n            <option>10</option>\n            <option>15</option>\n          </select>\n        </div>\n        <div class="form-group">\n          <button type="submit" class="btn btn-success">Search</button>\n        </div>\n      </form>\n       <!-- <button class="btn btn-success" onclick=\'rotateDiv($(".spiral"));\'\'>Spin!</button> -->\n      </div>\n\t\t</div>\n\t\t')
+        # SOURCE LINE 40
         __M_writer(escape(commonFunctions.footer()))
         __M_writer(u'\n\t</div>\n</body>\n</html>\n')
         return ''

@@ -3,6 +3,7 @@ import logging
 
 import pylons.test
 
+from networkingserver.model.database import databaseModel
 from networkingserver.config.environment import load_environment
 
 log = logging.getLogger(__name__)

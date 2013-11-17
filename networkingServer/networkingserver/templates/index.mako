@@ -4,13 +4,14 @@
 -->
 <%namespace name="commonFunctions" file="commonFunctions.mako"/>
 <html>
+<head>
 ${commonFunctions.head()}
-
+</head>
 <body>
 	<div class="pageContent">
 		${commonFunctions.nav()}
 		<div class="mainContent">
-			<h1>Networking Lab 4</h1>
+			<h1>Networking Lab 9</h1>
 			<h2>Daniel Robinson 0700662</h2>
 			<h1>Please Sign In</h1>			
 			<form role="form" id="signInForm" name="signInForm" action="">
@@ -36,7 +37,6 @@ ${commonFunctions.head()}
 				</tbody>
 			</table>
 		</div>
-
 		${commonFunctions.footer()}
 	</div>
 </body>

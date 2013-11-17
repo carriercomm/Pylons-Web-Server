@@ -113,3 +113,29 @@ footer{
 #userList button{
 	float: right;
 }
+
+.raised{
+		padding: 20px;
+		background: rgba(0,0,0, 0.7);
+		border-radius: 5px;
+		width: 300px;
+		margin: auto;
+}
+.raised h1{
+		color: white;
+}
+#imageSlider img{
+}
+#imageSlider .imageBox{
+		box-shadow: 5px 5px;
+		float: left;
+		margin: 20px;
+}
+.loading{
+		display: none;
+		background: #fff;
+		width: 35px;
+		margin: auto;
+		border-radius: 50px;
+		margin-bottom: 20px;
+}

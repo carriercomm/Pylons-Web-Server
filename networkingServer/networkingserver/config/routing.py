@@ -25,6 +25,9 @@ def make_map(config):
     map.connect('mapping2','/message/:msg',
 		controller='mainController', action='message',
 		msg='')
+    map.connect('mapping3','/auth',
+        controller='mainController', action='auth')
+
     map.connect('mapping6','/login',
 		controller='mainController', action='login')
     map.connect('mapping6','/logout',
@@ -43,6 +46,9 @@ def make_map(config):
     map.connect('mapping4','/play/:userid',
 		controller='mainController', action='play',
 		userid='[nobody]')
+
+    map.connect('flickrMapping', '/pictures',
+        controller="flickrController", action="getPictures")
 
     map.connect('/{controller}/{action}')
     map.connect('/{controller}/{action}/{id}')

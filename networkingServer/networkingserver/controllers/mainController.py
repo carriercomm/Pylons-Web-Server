@@ -1,7 +1,8 @@
 import logging
 import json
 import MySQLdb
-import database
+from networkingserver.model.database import databaseModel
+from networkingserver.model.userModel import userModel
 import collections
 import signal
 
@@ -16,169 +17,177 @@ log = logging.getLogger(__name__)
 users = [{'userid': 'fox', 'image': '/img/fox.gif'}, {'userid': 'peppy', 'image': '/img/peppy.gif'}]
 message = ""
 
+database = databaseModel()
+database.connect()
+db = database.getConnection()
+if db == None:
+		print "Failed to connect to the database"
 
-# initialize connection with the database
-db = database.connect()
+user = userModel()
+
+c.authenticated = False
 
 class MaincontrollerController(BaseController):
-    def index(self):
-	global users;
-	global message
-	c.users = users;
-	c.message = message
-        # Return a rendered template
-        #return render('/login.mako')
-        # or, return a response
-	if (request.method == 'GET'):
-		#check if user has logged in already	
-		print request.cookies.get( "authenticated" )
-		if (request.cookies.get( "authenticated" )):
-			return render('/index.mako')
-		else:
-			return render('/index.mako')
-	else:
-		return request.method;
-    def login(self):
-	global db
-	if 'username' in request.params and 'password' in request.params:
-		uname = request.params['username']
-		passwd = request.params['password']
+    def auth(self):
+    	userid = user.auth(request)
+    	return userid
 
-	# Check if username and password tuple exist in DB
-	cursor = db.cursor()
-	cursor.execute("""
-			SELECT username, password
-				FROM users
-				WHERE username = %s
-				AND BINARY password = %s""", (uname, passwd))
-	result = cursor.fetchone()
-	if result == None:
-		return "Invalid"
-	else:
-		#set a cookie
-		response.set_cookie( "authenticated" , uname, max_age=180*24*3600 )
-		return "Valid"
+    def index(self):
+			global users;
+			global message
+			global user;
+			c.users = users;
+			c.message = message
+
+			if (request.method == 'GET'):
+				c.username = user.auth(request)
+				if (c.username):
+						c.authenticated = True
+						return render('/dashboard.mako')
+				else:
+						c.authenticated = False
+						return render('/index.mako')
+			else:
+				return request.method;
+
+    def login(self):
+			global db
+			global user
+			if 'username' in request.params and 'password' in request.params:
+				uname = request.params['username']
+				passwd = request.params['password']
+
+				if (user.login(uname, passwd, db)):
+						response.set_cookie( "authenticated" , uname, max_age=180*24*3600 )
+						return "Valid"
+				else:
+						return "Invalid"
+
+
     def logout(self):
-	response.delete_cookie('authenticated')
+			response.delete_cookie('authenticated')
+			return
 
     def dashboard(self, username):
-	global users
-	global message
-	c.users = users
-	c.message = message
-	c.username = username
-	return render('/dashboard.mako')
+			global users
+			global message
+			c.users = users
+			c.message = message
+			c.username = username
+
+			c.authenticated = user.auth(request)
+			if (c.authenticated):
+				return render('/dashboard.mako')
+			else:
+				c.authenticated = False
+				return render('/index.mako')
 
     def userList(self):
-	global users
-	global message
-	global db
-	c.users = users
-	c.message = message
-	if 'username' in request.params and 'password' in request.params:
-		uname = request.params['username']
-		passwd = request.params['password']
+			global users
+			global message
+			global db
+			c.users = users
+			c.message = message
+			if 'username' in request.params and 'password' in request.params:
+				uname = request.params['username']
+				passwd = request.params['password']
 
-	if (request.method == 'GET'):
-		# list all users
-		userlist = []	
-		if db == None:
-			return None
-		try:
-			cursor = db.cursor()
-			cursor.execute("""SELECT userid, username, password FROM users""")
-			result = cursor.fetchall()
+			if (request.method == 'GET'):
+				# list all users
+				userlist = []	
+				if db == None:
+					return None
+				try:
+					cursor = db.cursor()
+					cursor.execute("""SELECT userid, username, password FROM dan_Users""")
+					result = cursor.fetchall()
 
-			for row in result:
-				user = {"userid": row[0], "username": row[1], "password": row[2]}
-				userlist.append(user)
+					for row in result:
+						user = {"userid": row[0], "username": row[1], "password": row[2]}
+						userlist.append(user)
 
-			cursor.close()
-			return json.dumps(userlist)
-		except:
-			return None
-	if (request.method == 'POST'):
-		# Add user
-		c.username = uname
-		c.password = passwd
-		
-		if db == None:
-			return "Connection to the database failed. Please make sure you are connected to the internet."
-		cursor = db.cursor()
-		cursor.execute("""SELECT MAX(userid) FROM users""")
-		userid = int(cursor.fetchall()[0][0])
-		userid = userid + 1
-		try:		
-			cursor.execute("""INSERT into users VALUES(%s, %s, %s)""", (userid, uname, passwd))
-			db.commit()
-			c.message = ("Successfully added ", (uname))
-		except:
-			c.message = "Failed to add user %s, that user already exists", (uname)
-		
-		cursor.close()
-		return c.message;
+					cursor.close()
+					return json.dumps(userlist)
+				except:
+					return None
+			if (request.method == 'POST'):
+				# Add user
+				c.username = uname
+				c.password = passwd
+
+				if db == None:
+					return "Connection to the database failed. Please make sure you are connected to the internet."
+				cursor = db.cursor()
+				try:
+					cursor.execute("""INSERT into dan_Users (username, password) VALUES(%s, %s)""", (uname, passwd))
+					db.commit()
+					c.message = ("Successfully added ", (uname))
+				except:
+					c.message = "Failed to add user %s, that user already exists" % (uname)
+
+				cursor.close()
+				return c.message;
 
     def users(self, userid):
-	global users
-	global message
-	global db
-	c.users = users
-	c.message = message
-	if (request.method == 'GET'):
-		if 'userid' in request.params:
-			c.userid = request.params['userid']
-	    	else:
-			c.userid = userid
-		for user in users:			
-			if (user['userid'] == c.userid):
-				c.image = user['image']
+			global users
+			global message
+			global db
+			c.users = users
+			c.message = message
+			if (request.method == 'GET'):
+				if 'userid' in request.params:
+					c.userid = request.params['userid']
+			    	else:
+					c.userid = userid
+				for user in users:
+					if (user['userid'] == c.userid):
+						c.image = user['image']
 
-		return json.dumps({ 'userid': c.userid, 'image': c.image })
-	
-	elif (request.method == 'DELETE'):
-		if 'userid' in request.params:
-			c.userid = request.params['userid']
-		else:
-			c.userid = userid
+				return json.dumps({ 'userid': c.userid, 'image': c.image })
 
-		cursor = db.cursor()
-		
-		try:
-			cursor.execute(""" DELETE FROM users WHERE userid = %s """, (userid))
-			db.commit()
-			c.message = "Successfully deleted %s" % c.userid
-		except:
-			c.message = "%s does not exist" % c.userid
-			
-		cursor.close()
-		return c.message
-	else:
-		return request.method;
+			elif (request.method == 'DELETE'):
+				if 'userid' in request.params:
+					c.userid = request.params['userid']
+				else:
+					c.userid = userid
+
+				cursor = db.cursor()
+
+				try:
+					cursor.execute(""" DELETE FROM dan_Users WHERE userid = %s """, (userid))
+					db.commit()
+					c.message = "Successfully deleted %s" % c.userid
+				except:
+					c.message = "%s does not exist" % c.userid
+
+				cursor.close()
+				return c.message
+			else:
+				return request.method;
 
     def play(self, userid):
-	global users
-	global message
-	c.users = users
-	c.message = message
-	if 'userid' in request.params:
-		c.userid = request.params['userid']
-    	else:
-		c.userid = userid
+			global users
+			global message
+			c.users = users
+			c.message = message
+			if 'userid' in request.params:
+				c.userid = request.params['userid']
+		    	else:
+				c.userid = userid
 
-	for user in users:
-		if (user['userid'] == c.userid):
-			c.image = user['image']
-	return render('/play.mako')
+			for user in users:
+				if (user['userid'] == c.userid):
+					c.image = user['image']
+			return render('/play.mako')
 
     def message(self, msg):
-	global message
+			global message
 
-	if (request.method == "POST"):
-		if (msg != ''):
-			message = msg
-	elif (request.method == "DELETE"):
-		message = ''
-	else:
-		# Not supported
-		return
-    
+			if (request.method == "POST"):
+				if (msg != ''):
+					message = msg
+			elif (request.method == "DELETE"):
+				message = ''
+			else:
+				# Not supported
+				return
